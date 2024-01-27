@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Face
   layers:
   - Default
   - TransparentFX
@@ -11,6 +12,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Floor
+  - Face
+  - FaceItem
   - 
   - 
   - 
@@ -33,10 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Answer
   m_SortingLayers:
   - name: Default
     uniqueID: 0

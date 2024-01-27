@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3246316482128857091}
   - component: {fileID: 1987333195468334280}
   - component: {fileID: 5381712150826155702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}

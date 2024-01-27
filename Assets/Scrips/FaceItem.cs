@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 using UnityEngine;
 using OdlsExtend;
+using System.Drawing;
 
 namespace MakeMyFukuwarai {
 	
@@ -24,6 +25,7 @@ namespace MakeMyFukuwarai {
 		[SerializeField] float waitThrowSpeed = 1;
 		[SerializeField] Rigidbody rigidbody;
 		[SerializeField] List<Collider> colliders;
+		[ReadOnly, SerializeField] float zOffset;
 
 		int faceMask;
 		void Start() {
@@ -58,7 +60,7 @@ namespace MakeMyFukuwarai {
 					float _hitSqrMagnitude = Vector3.SqrMagnitude(startPos-_hit.point);
 					float _flySqrMagnitude = Vector3.SqrMagnitude(startPos-transform.position);
 					if (_flySqrMagnitude >= _hitSqrMagnitude) {
-						transform.position = _hit.point - shootDir * 0.03f;
+						transform.position = _hit.point - shootDir * zOffset;
 						state = State.Attach;
 						Face.instance.Attach(this);
 					}
@@ -133,13 +135,20 @@ namespace MakeMyFukuwarai {
 		[Button]
 		void ApplyCollider() {
 			foreach (var _meshRenderer in GetComponentsInChildren<MeshRenderer>()) {
+				_meshRenderer.transform.localPosition = Vector3.zero;
+				_meshRenderer.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+				_meshRenderer.transform.localScale = Vector3.one * 100;
+
 				foreach (var _collider in _meshRenderer.GetComponents<Collider>()) {
 					DestroyImmediate(_collider);
 				}
 				var _meshCollider = _meshRenderer.AddComponent<MeshCollider>();
 				_meshCollider.convex = true;
 				var _boxCollider = _meshRenderer.AddComponent<BoxCollider>();
-				_boxCollider.size = _boxCollider.size * 0.5f;
+				var _size = _boxCollider.size;
+				_size.Scale(new Vector3(0.5f, 1f, 0.5f));
+				_boxCollider.size = _size;
+				zOffset = _boxCollider.size.y * 100;
 			}
 		}
 	}

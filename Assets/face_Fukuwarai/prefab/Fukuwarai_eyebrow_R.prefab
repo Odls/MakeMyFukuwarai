@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 874785088716783747}
   - component: {fileID: 5910089322702752323}
   m_Layer: 8
-  m_Name: eyebrow_R
+  m_Name: Fukuwarai_eyebrow_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

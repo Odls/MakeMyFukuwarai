@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07129df4d648df41903242b0bec804b, type: 3}
+  m_Name: eyeTable
+  m_EditorClassIdentifier: 
+  items:
+  - left: {fileID: 3462430736079767313, guid: 33368386d70cb7e4baf065efc9885db2, type: 3}
+    right: {fileID: 3314886314693953462, guid: 6d2b2e032a50be147b8cacf35dd1c2d2, type: 3}
+  - left: {fileID: 2401693699908563265, guid: 1b7511e2152f16049b5d067355741e0c, type: 3}
+    right: {fileID: 2393338918754539424, guid: 2bce6ca23ea4a704f943633c1bdff353, type: 3}

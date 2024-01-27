@@ -154,6 +154,7 @@ MonoBehaviour:
   answerAnchorNose: {fileID: 0}
   answerAnchorOtherL: {fileID: 0}
   answerAnchorOtherR: {fileID: 0}
+  faceItemPrefab: {fileID: 5268064768321424026, guid: 5150356ad9d904945b003a5bba13b0cf, type: 3}
   mouthTable: {fileID: 11400000, guid: 606392119cdf69140bc48d7b93df77d8, type: 2}
   noseTable: {fileID: 11400000, guid: 05a25b00cb74cfa43a7a443462d0c404, type: 2}
   eyeTable: {fileID: 11400000, guid: 4b2ddc4801378574fbb35dfcb5f8c6df, type: 2}

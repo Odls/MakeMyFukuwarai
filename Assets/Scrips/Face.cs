@@ -1,8 +1,7 @@
 ﻿using Sirenix.OdinInspector;
-
 using System.Collections.Generic;
-
 using UnityEngine;
+using OdlsExtend;
 
 namespace MakeMyFukuwarai {
 	public class Face : MonoBehaviour {
@@ -17,7 +16,9 @@ namespace MakeMyFukuwarai {
 		[SerializeField, FoldoutGroup("Anchor")] Transform anchorEyeL, anchorEyeR, anchorEyebrowL, anchorEyebrowR, anchorMouth, anchorNose, anchorOtherL, anchorOtherR;
 		[SerializeField, FoldoutGroup("Answer")] Transform answerAnchorEyeL, answerAnchorEyeR, answerAnchorEyebrowL, answerAnchorEyebrowR, answerAnchorMouth, answerAnchorNose, answerAnchorOtherL, answerAnchorOtherR;
 
+		[ShowInInspector, ReadOnly, FoldoutGroup("Anchor")] List<MeshRenderer> mAnswers;
 		[ShowInInspector, ReadOnly, FoldoutGroup("Item")] MeshRenderer answerEyeL, answerEyeR, answerEyebrowL, answerEyebrowR, answerMouth, answerNose, answerOtherL, answerOtherR;
+		[SerializeField, FoldoutGroup("Item")] FaceItem faceItemPrefab;
 		[SerializeField, FoldoutGroup("Item")] FaceItemTable mouthTable, noseTable;
 		[SerializeField, FoldoutGroup("Item")] FaceItemPairTable eyeTable, eyebrowTable, otherTable;
 
@@ -27,26 +28,28 @@ namespace MakeMyFukuwarai {
 
 		[Button, FoldoutGroup("Anchor")]
 		void GetAnchor() {
-			mAnchors = new List<Transform>();
+			mAnchors ??= new List<Transform>();
+			mAnchors.Clear();
+
 			foreach (var _child in faceMesh.transform) {
 				Transform _anchor = _child as Transform;
 				if ((_anchor != null) && (_anchor != faceMesh.transform)) {
 					mAnchors.Add(_anchor);
-					if ((_anchor.name == "eye_L") || (_anchor.name == "L_eye")) {
+					if ((_anchor.name.EndsWith("eye_L")) || (_anchor.name.EndsWith("L_eye"))) {
 						anchorEyeL = _anchor;
-					} else if ((_anchor.name == "eye_R") || (_anchor.name == "R_eye")) {
+					} else if ((_anchor.name.EndsWith("eye_R") || (_anchor.name.EndsWith("R_eye")))) {
 						anchorEyeR = _anchor;
-					} else if ((_anchor.name == "eyebrow_R") || (_anchor.name == "R_eyebrow")) {
+					} else if ((_anchor.name.EndsWith("eyebrow_R") || (_anchor.name.EndsWith("R_eyebrow")))) {
 						anchorEyebrowR = _anchor;
-					} else if ((_anchor.name == "eyebrow_L") || (_anchor.name == "L_eyebrow")) {
+					} else if ((_anchor.name.EndsWith("eyebrow_L") || (_anchor.name.EndsWith("L_eyebrow")))) {
 						anchorEyebrowL = _anchor;
-					} else if (_anchor.name == "mouth") {
+					} else if (_anchor.name.EndsWith("mouth")) {
 						anchorMouth = _anchor;
-					} else if (_anchor.name == "nose") {
+					} else if (_anchor.name.EndsWith("nose")) {
 						anchorNose = _anchor;
-					} else if ((_anchor.name == "other_R") || (_anchor.name == "R_other")) {
+					} else if ((_anchor.name.EndsWith("other_R") || (_anchor.name.EndsWith("R_other")))) {
 						anchorOtherR = _anchor;
-					} else if ((_anchor.name == "other_L") || (_anchor.name == "L_other")) {
+					} else if ((_anchor.name.EndsWith("other_L") || (_anchor.name.EndsWith("L_other")))) {
 						anchorOtherL = _anchor;
 					}
 				}
@@ -55,21 +58,21 @@ namespace MakeMyFukuwarai {
 			foreach (var _child in answerFaceMesh.transform) {
 				Transform _anchor = _child as Transform;
 				if ((_anchor != null) && (_anchor != answerFaceMesh.transform)) {
-					if ((_anchor.name == "eye_L") || (_anchor.name == "L_eye")) {
+					if ((_anchor.name.EndsWith("eye_L") || (_anchor.name.EndsWith("L_eye")))) {
 						answerAnchorEyeL = _anchor;
-					} else if ((_anchor.name == "eye_R") || (_anchor.name == "R_eye")) {
+					} else if ((_anchor.name.EndsWith("eye_R") || (_anchor.name.EndsWith("R_eye")))) {
 						answerAnchorEyeR = _anchor;
-					} else if ((_anchor.name == "eyebrow_R") || (_anchor.name == "R_eyebrow")) {
+					} else if ((_anchor.name.EndsWith("eyebrow_R") || (_anchor.name.EndsWith("R_eyebrow")))) {
 						answerAnchorEyebrowR = _anchor;
-					} else if ((_anchor.name == "eyebrow_L") || (_anchor.name == "L_eyebrow")) {
+					} else if ((_anchor.name.EndsWith("eyebrow_L") || (_anchor.name.EndsWith("L_eyebrow")))) {
 						answerAnchorEyebrowL = _anchor;
-					} else if (_anchor.name == "mouth") {
+					} else if (_anchor.name.EndsWith("mouth")) {
 						answerAnchorMouth = _anchor;
-					} else if (_anchor.name == "nose") {
+					} else if (_anchor.name.EndsWith("nose")) {
 						answerAnchorNose = _anchor;
-					} else if ((_anchor.name == "other_R") || (_anchor.name == "R_other")) {
+					} else if ((_anchor.name.EndsWith("other_R") || (_anchor.name.EndsWith("R_other")))) {
 						answerAnchorOtherR = _anchor;
-					} else if ((_anchor.name == "other_L") || (_anchor.name == "L_other")) {
+					} else if ((_anchor.name.EndsWith("other_L") || (_anchor.name.EndsWith("L_other")))) {
 						answerAnchorOtherL = _anchor;
 					}
 				}
@@ -82,6 +85,7 @@ namespace MakeMyFukuwarai {
 			wiggleAnimator.Play("Idle");
 
 			GenerateAnswer();
+			GenerateFaceItem();
 		}
 
 		public void Update() {
@@ -95,6 +99,8 @@ namespace MakeMyFukuwarai {
 		}
 	
 		void AddToAnswer(MeshRenderer p_meshRenderer, Transform p_answerAnchor) {
+			mAnswers.Add(p_meshRenderer);
+
 			var _answerView = Instantiate(p_meshRenderer, p_answerAnchor);
 			_answerView.gameObject.layer = LayerMask.NameToLayer("Answer");
 			_answerView.transform.localScale = Vector3.one;
@@ -103,7 +109,10 @@ namespace MakeMyFukuwarai {
 
 		}
 
-		internal void GenerateAnswer() {
+		void GenerateAnswer() {
+			mAnswers ??= new List<MeshRenderer> ();
+			mAnswers.Clear();
+
 			if (anchorEyeL != null) {
 				var _eyeAnswer = eyeTable.GetRandomItem();
 				answerEyeL = _eyeAnswer.left;
@@ -138,6 +147,37 @@ namespace MakeMyFukuwarai {
 				AddToAnswer(answerOtherR, answerAnchorOtherR);
 			}
 		}
-	
+
+		void GenerateFaceItem() {
+			HashSet<MeshRenderer> _meshSet = new HashSet<MeshRenderer>();
+
+			mouthTable.AddToSet(_meshSet);
+			noseTable.AddToSet(_meshSet);
+			eyeTable.AddToSet(_meshSet);
+			eyebrowTable.AddToSet(_meshSet);
+			otherTable.AddToSet(_meshSet);
+
+			foreach(var _answer in mAnswers) {
+				_meshSet.Remove(_answer);
+				GenerateFaceItem(_answer);
+			}
+
+			List<MeshRenderer> _otherMeshs = new List<MeshRenderer>(_meshSet);
+			_otherMeshs.Shuffle();
+
+			int _otherCount = Mathf.Min(_meshSet.Count, mAnswers.Count);
+
+			for(int f=0; f < _otherCount; f++) {
+				GenerateFaceItem(_otherMeshs[f]);
+			}
+
+		}
+
+		void GenerateFaceItem(MeshRenderer p_mesh) {
+			var _item = Instantiate(faceItemPrefab);
+			Instantiate(p_mesh, _item.transform);
+			_item.ApplyCollider();
+			_item.Popup();
+		}
 	}
 }

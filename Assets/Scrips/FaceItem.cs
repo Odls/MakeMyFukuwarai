@@ -72,7 +72,7 @@ namespace MakeMyFukuwarai {
 			}
 		}
 
-		void Popup() {
+		internal void Popup() {
 			state = State.Idle;
 			rigidbody.useGravity = true;
 			trigger = false;
@@ -133,10 +133,10 @@ namespace MakeMyFukuwarai {
 		}
 
 		[Button]
-		void ApplyCollider() {
+		internal void ApplyCollider() {
 			foreach (var _meshRenderer in GetComponentsInChildren<MeshRenderer>()) {
 				_meshRenderer.transform.localPosition = Vector3.zero;
-				_meshRenderer.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+				_meshRenderer.transform.localRotation = Quaternion.Euler(-90,180, 0);
 				_meshRenderer.transform.localScale = Vector3.one * 100;
 
 				foreach (var _collider in _meshRenderer.GetComponents<Collider>()) {
@@ -148,7 +148,7 @@ namespace MakeMyFukuwarai {
 				var _size = _boxCollider.size;
 				_size.Scale(new Vector3(0.5f, 1f, 0.5f));
 				_boxCollider.size = _size;
-				zOffset = _boxCollider.size.y * 100;
+				zOffset = (_boxCollider.size.y*0.5f + _boxCollider.center.y) * 100;
 			}
 		}
 	}

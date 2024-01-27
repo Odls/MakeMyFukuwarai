@@ -15,5 +15,11 @@ namespace MakeMyFukuwarai {
 			public MeshRenderer right;
 		}
 
+		internal override void AddToSet(HashSet<MeshRenderer> p_meshSet) {
+			foreach (FaceItemPair _pair in items) {
+				p_meshSet.Add(_pair.left);
+				p_meshSet.Add(_pair.right);
+			}
+		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +11,6 @@ namespace MakeMyFukuwarai {
 			return items[Random.Range(0, items.Count)];
 		}
 
-
+		internal abstract void AddToSet(HashSet<MeshRenderer> p_meshSet);
 	}
 }

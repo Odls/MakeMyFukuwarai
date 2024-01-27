@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Face
+  - Eye_L
+  - Eye_R
+  - Eyebrow_L
+  - Eyebrow_R
+  - Mouth
+  - Nose
+  - Other_L
+  - Other_R
   layers:
   - Default
   - TransparentFX

@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using OdlsExtend;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.XR;
 
 namespace MakeMyFukuwarai {
+
+	struct FaceItemResult {
+		public FaceItem item;
+		public float score;
+	}
 	public class Face : MonoBehaviour {
 		List<FaceItem> attachItems;
 		[SerializeField] MeshRenderer faceMesh;
@@ -175,9 +182,64 @@ namespace MakeMyFukuwarai {
 
 		void GenerateFaceItem(MeshRenderer p_mesh) {
 			var _item = Instantiate(faceItemPrefab);
-			Instantiate(p_mesh, _item.transform);
+			var _mesh = Instantiate(p_mesh, _item.transform);
+			_mesh.name = p_mesh.name;
 			_item.ApplyCollider();
 			_item.Popup();
+		}
+
+		[Button]
+		List<FaceItemResult> CalculateScore() {
+			var _results = new List<FaceItemResult>();
+			HashSet<string> _answerSet = new HashSet<string>();
+			foreach (var _answer in mAnswers) {
+				_answerSet.Add(_answer.name);
+			}
+
+			foreach (var _item in attachItems) {
+				if (!_answerSet.Contains(_item.name)) {
+					_results.Add(new FaceItemResult() {
+						item = _item,
+						score = -0.5f,
+					});
+				} else {
+					float _score = 0;
+					switch (_item.tag) {
+					case "Eye_L":		_score = CalculateScore(_item, anchorEyeL);     break;
+					case "Eye_R":		_score = CalculateScore(_item, anchorEyeR);     break;
+					case "Eyebrow_L":	_score = CalculateScore(_item, anchorEyebrowL); break;
+					case "Eyebrow_R":	_score = CalculateScore(_item, anchorEyebrowR); break;
+					case "Mouth":		_score = CalculateScore(_item, anchorMouth);    break;
+					case "Nose":		_score = CalculateScore(_item, anchorNose);     break;
+					case "Other_L":		_score = CalculateScore(_item, anchorOtherL);   break;
+					case "Other_R":		_score = CalculateScore(_item, anchorOtherR);   break;
+					}
+
+					_results.Add(new FaceItemResult() {
+						item = _item,
+						score = _score,
+					});
+				}
+			}
+
+			float _totalScore = 0;
+			string _log = "";
+			foreach (FaceItemResult _result in _results) {
+				_totalScore += _result.score;
+				_log += _result.item.name + " " + Mathf.Floor(_result.score*100) + "%\n";
+			}
+
+			_totalScore = Mathf.Clamp01(_totalScore/ mAnswers.Count);
+
+			Debug.Log("Score : " + Mathf.Floor(_totalScore*100) + "% \n" + _log);
+
+			return _results;
+		}
+
+		private float CalculateScore(FaceItem p_item, Transform p_anchor) {
+			var _distance = Vector3.Distance(p_item.transform.position, p_anchor.position);
+			return 1- Mathf.Clamp01(_distance/0.3f);
+
 		}
 	}
 }

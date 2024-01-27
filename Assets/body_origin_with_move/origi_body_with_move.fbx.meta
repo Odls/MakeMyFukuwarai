@@ -43,7 +43,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: idle
+      name: metarig|metarigAction
       takeName: metarig|metarigAction
       internalID: -887982601649841707
       firstFrame: 4
@@ -74,7 +74,7 @@ ModelImporter:
     - serializedVersion: 16
       name: sad
       takeName: metarig|metarigAction
-      internalID: 3536513432961602234
+      internalID: 14714776983925720
       firstFrame: 14
       lastFrame: 15
       wrapMode: 0
@@ -103,7 +103,7 @@ ModelImporter:
     - serializedVersion: 16
       name: good
       takeName: metarig|metarigAction
-      internalID: -8467477205274376854
+      internalID: 8122295292245662830
       firstFrame: 24
       lastFrame: 25
       wrapMode: 0
@@ -132,9 +132,9 @@ ModelImporter:
     - serializedVersion: 16
       name: bad
       takeName: metarig|metarigAction
-      internalID: -8514521339571864881
-      firstFrame: 29
-      lastFrame: 29
+      internalID: -820951429982232487
+      firstFrame: 34
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

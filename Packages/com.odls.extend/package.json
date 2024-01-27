@@ -1,0 +1,12 @@
+{
+  "name": "com.odls.extend",
+  "version": "1.0.0",
+  "displayName": "Odls Extend",
+  "description": "歐德斯各種便利的擴充方法",
+  "unity": "2020.3",
+  "keywords": [],
+  "author": {
+    "name": "Odls",
+    "email": "odlscheng@igs.com.tw"
+  }
+}

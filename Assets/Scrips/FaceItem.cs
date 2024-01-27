@@ -58,7 +58,7 @@ namespace MakeMyFukuwarai {
 					float _hitSqrMagnitude = Vector3.SqrMagnitude(startPos-_hit.point);
 					float _flySqrMagnitude = Vector3.SqrMagnitude(startPos-transform.position);
 					if (_flySqrMagnitude >= _hitSqrMagnitude) {
-						transform.position = _hit.point - shootDir * 0.01f;
+						transform.position = _hit.point - shootDir * 0.03f;
 						state = State.Attach;
 						Face.instance.Attach(this);
 					}

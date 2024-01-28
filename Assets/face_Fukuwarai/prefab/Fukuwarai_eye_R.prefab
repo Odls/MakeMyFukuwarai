@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2393338918754539424}
   m_Layer: 8
   m_Name: Fukuwarai_eye_R
-  m_TagString: Untagged
+  m_TagString: Eye_R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

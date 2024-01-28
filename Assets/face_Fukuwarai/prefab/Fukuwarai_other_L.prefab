@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3067634477446720621}
   m_Layer: 8
   m_Name: Fukuwarai_other_L
-  m_TagString: Untagged
+  m_TagString: Other_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

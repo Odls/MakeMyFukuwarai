@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd3417ac298e15749a73b347a776b2e7, type: 3}
+      propertyPath: m_TagString
+      value: Eyebrow_L
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

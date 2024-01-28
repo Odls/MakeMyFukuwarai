@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6878941459135395321}
   m_Layer: 8
   m_Name: Fukuwarai_eyebrow_L
-  m_TagString: Untagged
+  m_TagString: Eyebrow_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

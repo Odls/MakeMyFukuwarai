@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2194271975929945107}
   - component: {fileID: 9096590811549695968}
   - component: {fileID: 4000482427514590709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mikey_eye_L
-  m_TagString: Untagged
+  m_TagString: Eye_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

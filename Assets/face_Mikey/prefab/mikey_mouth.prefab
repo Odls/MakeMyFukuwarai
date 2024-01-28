@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 46740575798290951}
   - component: {fileID: 6912234646416208314}
   - component: {fileID: 9164124250578489923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: mikey_mouth
-  m_TagString: Untagged
+  m_TagString: Mouth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

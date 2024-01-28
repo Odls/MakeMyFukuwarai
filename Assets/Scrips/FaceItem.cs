@@ -135,6 +135,8 @@ namespace MakeMyFukuwarai {
 		[Button]
 		internal void ApplyCollider() {
 			foreach (var _meshRenderer in GetComponentsInChildren<MeshRenderer>()) {
+				gameObject.tag = _meshRenderer.tag;
+				gameObject.name = _meshRenderer.name;
 				_meshRenderer.transform.localPosition = Vector3.zero;
 				_meshRenderer.transform.localRotation = Quaternion.Euler(-90,180, 0);
 				_meshRenderer.transform.localScale = Vector3.one * 100;

@@ -162,6 +162,10 @@ PrefabInstance:
       propertyPath: mAnchors.Array.data[7]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2216656947802072626, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ea5c8ae6bfd75ce49810a99b6995e86f, type: 2}
     - target: {fileID: 5513960450129879814, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
       propertyPath: m_Name
       value: mikey_FaceTarget

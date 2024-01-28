@@ -9,7 +9,7 @@ namespace MakeMyFukuwarai {
 		[SerializeField] Image bar;
 		[SerializeField] TextMeshProUGUI text;
 
-		[SerializeField] float winThreshold = 0.4f;
+		[SerializeField] float winThreshold = 0.5f;
 		[SerializeField] float timeLimit = 40f;
 
 		float nowTime;

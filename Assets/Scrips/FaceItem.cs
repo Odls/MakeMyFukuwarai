@@ -74,16 +74,18 @@ namespace MakeMyFukuwarai {
 
 		internal void Popup() {
 			state = State.Idle;
-			rigidbody.useGravity = true;
-			trigger = false;
 			transform.position = NumberExtend.RandomInBox(popupMin, popupMax);
 			transform.transform.rotation = Random.rotation;
+			rigidbody.useGravity = true;
+			rigidbody.velocity = Vector3.zero;
+			rigidbody.angularVelocity = Vector3.zero;
+			trigger = false;
 		}
 
 		static Vector3 minPos = new Vector3(-1.4f, -0.45f, -2.8f);
 		static Vector3 maxPos = new Vector3(1.4f, 1.3f, 0.1f);
-		static Vector3 popupMin = new Vector3(-7.7f, 0.45f, -1.65f);
-		static Vector3 popupMax = new Vector3(7.7f, 0.45f, -1.45f);
+		static Vector3 popupMin = new Vector3(-1.3f, 0.1f, -1.65f);
+		static Vector3 popupMax = new Vector3(1.3f, 0.1f, -1.45f);
 
 		void CheckOut() {
 			Vector3 _pos = transform.position;
@@ -100,7 +102,7 @@ namespace MakeMyFukuwarai {
 			state = State.Idle;
 			rigidbody.useGravity = true;
 			trigger = false;
-			rigidbody.AddForce(Vector3.forward * 10, ForceMode.Impulse);
+			rigidbody.AddForce(Vector3.forward * 3, ForceMode.Impulse);
 		}
 
 		internal void Shoot(Vector3 p_position) {

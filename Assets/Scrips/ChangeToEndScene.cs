@@ -9,13 +9,13 @@ namespace MakeMyFukuwarai {
 
 		public IEnumerator Start() {
 			yield return new WaitForSeconds(time);
-
+			GameManager.finalMask.SetParent(null);
 			DontDestroyOnLoad(GameManager.finalMask);
 			if (GameManager.nowIsWin) {
 				SceneManager.LoadScene("Win");
 			} else {
-				SceneManager.LoadScene("Win");
-				//SceneManager.LoadScene("Lose");
+				//SceneManager.LoadScene("Win");
+				SceneManager.LoadScene("Lose");
 			}
 		}
 	}

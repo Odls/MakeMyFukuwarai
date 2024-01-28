@@ -243,13 +243,17 @@ PrefabInstance:
       propertyPath: mAnchors.Array.data[7]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2216656947802072626, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 017382d5d4b19f74fb186e028c255fda, type: 2}
     - target: {fileID: 5513960450129879814, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
       propertyPath: m_Name
       value: scarecrow_FaceTarget
       objectReference: {fileID: 0}
     - target: {fileID: 5513960450129879814, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8097562923440309419, guid: f60b3ca11474bb647aff23c9f4a694c4, type: 3}
       propertyPath: m_LocalPosition.x

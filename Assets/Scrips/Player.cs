@@ -72,6 +72,13 @@ namespace MakeMyFukuwarai {
 					nowItem.Shoot(shootPoint.position);
 					nowItem = null;
 				}
+				if (Input.GetMouseButtonDown(1)) {
+					state = State.Pick;
+					lineTop.gameObject.SetActive(false);
+
+					nowItem.Drop();
+					nowItem = null;
+				}
 				break;
 			}
 		}

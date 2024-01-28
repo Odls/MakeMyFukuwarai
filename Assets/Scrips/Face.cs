@@ -7,12 +7,13 @@ using UnityEngine.XR;
 
 namespace MakeMyFukuwarai {
 
-	struct FaceItemResult {
+	public struct FaceItemResult {
 		public FaceItem item;
 		public float score;
 	}
 	public class Face : MonoBehaviour {
 		List<FaceItem> attachItems;
+		[SerializeField] Transform finalMask;
 		[SerializeField] MeshRenderer faceMesh;
 		[SerializeField] MeshRenderer answerFaceMesh;
 
@@ -102,7 +103,7 @@ namespace MakeMyFukuwarai {
 		}
 		internal void Attach(FaceItem p_faceItem) {
 			attachItems.Add(p_faceItem);
-			p_faceItem.transform.SetParent(faceMesh.transform);
+			p_faceItem.transform.SetParent(finalMask);
 		}
 	
 		void AddToAnswer(MeshRenderer p_meshRenderer, Transform p_answerAnchor) {
@@ -189,7 +190,7 @@ namespace MakeMyFukuwarai {
 		}
 
 		[Button]
-		List<FaceItemResult> CalculateScore() {
+		public List<FaceItemResult> CalculateScore(out float p_totalScore, out Transform p_finalMask) {
 			var _results = new List<FaceItemResult>();
 			HashSet<string> _answerSet = new HashSet<string>();
 			foreach (var _answer in mAnswers) {
@@ -222,21 +223,24 @@ namespace MakeMyFukuwarai {
 				}
 			}
 
-			float _totalScore = 0;
+			p_totalScore = 0;
 			string _log = "";
 			foreach (FaceItemResult _result in _results) {
-				_totalScore += _result.score;
+				p_totalScore += _result.score;
 				_log += _result.item.name + " " + Mathf.Floor(_result.score*100) + "%\n";
 			}
 
-			_totalScore = Mathf.Clamp01(_totalScore/ mAnswers.Count);
+			p_totalScore = Mathf.Clamp01(p_totalScore/ mAnswers.Count);
 
-			Debug.Log("Score : " + Mathf.Floor(_totalScore*100) + "% \n" + _log);
+			Debug.Log("Score : " + Mathf.Floor(p_totalScore*100) + "% \n" + _log);
 
+			p_finalMask = finalMask;
+			finalMask.SetParent(null);
+			DontDestroyOnLoad(finalMask.gameObject);
 			return _results;
 		}
 
-		private float CalculateScore(FaceItem p_item, Transform p_anchor) {
+		float CalculateScore(FaceItem p_item, Transform p_anchor) {
 			var _distance = Vector3.Distance(p_item.transform.position, p_anchor.position);
 			return 1- Mathf.Clamp01(_distance/0.3f);
 

@@ -24,9 +24,9 @@ namespace MakeMyFukuwarai {
 				nowTime = 0;
 				Face.instance.CalculateScore(out var _totalScore, out var _finalMask);
 				if(_totalScore > winThreshold) {
-					GameManager.EndGame(_finalMask, true);
+					GameManager.EndGame(_finalMask, _totalScore, true);
 				} else {
-					GameManager.EndGame(_finalMask, false);
+					GameManager.EndGame(_finalMask, _totalScore, false);
 				}
 			}
 

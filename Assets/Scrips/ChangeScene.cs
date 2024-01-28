@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace MakeMyFukuwarai {
 	public class ChangeScene : MonoBehaviour {
-		[SerializeField] float time = 0f;
+			[SerializeField] float time = 0f;
 		[SerializeField] string targetName;
 
 		public IEnumerator Start() {

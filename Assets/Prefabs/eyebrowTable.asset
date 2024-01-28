@@ -17,3 +17,5 @@ MonoBehaviour:
     right: {fileID: 6865731390507877247, guid: 9d466a440a324c740a585316d3cd9fcb, type: 3}
   - left: {fileID: 6878941459135395321, guid: 8bcd95d9eae417948ae57c1f4c68b1db, type: 3}
     right: {fileID: 5910089322702752323, guid: c4012f54fb47a404ab8ddf923a490899, type: 3}
+  - left: {fileID: 4740230162906161512, guid: 4503d11061edb5b4697e8561527b865e, type: 3}
+    right: {fileID: 4617442498848374618, guid: 8f162229a35aafb409fd54ac6f6cd918, type: 3}
